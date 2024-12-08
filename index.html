@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background-color: #0088cc;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #006699;
+        }
+    </style>
+    <script src="//niphaumeenses.net/vignette.min.js" data-zone="8627320" data-sdk="show_8627320"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our Mini App</h1>
+        <p>Click the button below to watch an ad and earn rewards.</p>
+        <button class="btn" id="show-ad-btn">Show Ad</button>
+    </div>
+
+    <script>
+        document.getElementById('show-ad-btn').addEventListener('click', () => {
+            show_8627320().then(() => {
+                // Your reward function here
+                alert('You have seen the ad and earned a reward!');
+                // Optionally, you can send a message back to the Telegram bot
+                Telegram.WebApp.sendData('reward_earned');
+            }).catch((error) => {
+                console.error('Error showing ad:', error);
+                alert('Failed to show the ad. Please try again.');
+            });
+        });
+
+        // Initialize Telegram Web App
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
